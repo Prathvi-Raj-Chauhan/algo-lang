@@ -5,7 +5,7 @@ using namespace std;
 //generic block finder for IF, ELIF, and ELSE
 int findBlockEnd(int startIndex, const vector<string>& Buffer, string startCmd, string endCmd) {
     int count = 1;
-    for (int i = startIndex + 1; i < Buffer.size(); i++) {
+    for (int i = startIndex + 1; i < static_cast<int>(Buffer.size()); i++) {
         string currentLine = trim(Buffer[i]);
         if (currentLine.empty() || (currentLine.length() >= 2 && currentLine.substr(0, 2) == "//")) continue;
         
@@ -24,7 +24,7 @@ int findBlockEnd(int startIndex, const vector<string>& Buffer, string startCmd, 
 
 int findEndWhile(int startIndex, const vector<string>& Buffer) {
     int whileCount = 1;
-    for (int i = startIndex + 1; i < Buffer.size(); i++) {
+    for (int i = startIndex + 1; i < static_cast<int>(Buffer.size()); i++) {
         string currentLine = trim(Buffer[i]);
         if (currentLine.empty() || (currentLine.length() >= 2 && currentLine.substr(0, 2) == "//")) continue;
         
