@@ -1,7 +1,6 @@
 #include "utils.hpp"
 #include "execute.hpp"
 #include "types.hpp"
-
 using namespace std;
 
 //language ka RAM that we use for storing variables
@@ -37,7 +36,8 @@ int main(int argc, char* argv[]) {
     file.close();
     
     //code execution loop
-    for(int i = 0; i < Buffer.size(); ++i){
+    for(int i = 0; i < static_cast<int>(Buffer.size()); ++i){
+         // cast to avoid signed/unsigned warning (-Werror)
         //access current line from buffer and skip if blank
         string currentLine = trim(Buffer[i]);
         if(currentLine.empty()) continue;

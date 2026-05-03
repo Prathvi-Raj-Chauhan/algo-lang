@@ -1,0 +1,22 @@
+START
+DECLARE num, loops, fact_num, ub, lb
+loops = 0
+
+OUTPUT "Welcome to the Random Number generator."
+OUTPUT "How many numbers you would like to generate ?"
+OUTPUT "Please enter a number : "
+INPUT num
+OUTPUT "Please enter upper limit of random numbers : "
+INPUT ub
+OUTPUT "Please enter lower limit of random numbers : "
+INPUT lb
+
+WHILE loops < num
+//    fact_num = RANDOM(0,20)
+    fact_num = RANDOM(lb,ub)
+    OUTPUT fact_num
+    loops = loops + 1
+ENDWHILE
+
+OUTPUT "Generation successfull. Goodbye!"
+END

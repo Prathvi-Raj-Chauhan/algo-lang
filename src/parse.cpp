@@ -26,6 +26,29 @@ void skipWhitespace(const string& str, size_t& pos) {
   }
 }
 
+// function to return a pseudo random number using xorshift32 
+unsigned int xorshift(unsigned int &x) {
+    x ^= x << 13;
+    x ^= x >> 17;
+    x ^= x << 5;
+    return x;
+}
+
+static unsigned int x = time(0); // persistant seed to maintain randomness even in quick repeated generations
+
+int randInRange(int lb, int ub) {
+
+    unsigned int range = ub - lb + 1;
+    unsigned int limit = UINT32_MAX - (UINT32_MAX % range);
+
+    unsigned int val;
+    do {
+        val = xorshift(x);
+    } while (val >= limit);
+
+    return lb + (val % range);
+}
+
 //reads a word, if digit, converts to float, if letters, pulls the value from variables map
 //also handles negative sign and restarts if it sees ( ).
 float parseFactor(const string& str, size_t& pos, map<string, varValue>* variables) {
@@ -38,7 +61,30 @@ float parseFactor(const string& str, size_t& pos, map<string, varValue>* variabl
     pos++;
     skipWhitespace(str, pos);
   }
+  if(str[pos] == 'R'){ // parsing random variable
+    pos += 6; // 'R' 'A' 'N' 'D' 'O' 'M' skips RANDOM
+    skipWhitespace(str, pos); // now pos is standing at '('
+    if(str[pos] != '('){
+      failConditionalParse("Expected '(' in RANDOM");
+    }
+    pos++;
+    int a = parseExpression(str, pos, variables);
+    skipWhitespace(str, pos);
+    
+    if (str[pos] != ',') failConditionalParse("Expected ',' in RANDOM");
+    pos++;
+    
+    int b = parseExpression(str, pos, variables);
+    if(a > b){
+      failConditionalParse("a expected to be <= b in RANDOM");
+    }
+    skipWhitespace(str, pos);
 
+    if (str[pos] != ')') failConditionalParse("Expected ')'");
+    pos++;
+
+    return sign*randInRange(a, b);
+  }
   if (str[pos] == '(') {
     pos++;
     float val = parseExpression(str, pos, variables);
@@ -208,3 +254,4 @@ bool parseBooleanConditions(stringstream& nestedConditionalStatement, map<string
 
   return result;
 }
+
