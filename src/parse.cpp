@@ -83,7 +83,7 @@ float parseFactor(const string& str, size_t& pos, map<string, varValue>* variabl
     if (str[pos] != ')') failConditionalParse("Expected ')'");
     pos++;
 
-    return randInRange(a, b);
+    return sign*randInRange(a, b);
   }
   if (str[pos] == '(') {
     pos++;
