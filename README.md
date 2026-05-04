@@ -21,6 +21,9 @@ Boolean logic inside IF/ELIF supports **and**, **or**, and **xor** with fixed pr
 - **and/xor** are evaluated before **or**
 - operators at the same precedence are evaluated left-to-right
 - bracket/parenthesis grouping in IF/ELIF conditions is intentionally **not** supported
+- **RANDOM** - use var_name = RANDOM(lower_bound, upper_bound) to assign a random number to a variable
+- **$** - if you want to show a variable's value in output just type it with **$**  and it will show it,
+ex - var_a = 5, OUTPUT "value of var_a = $var_a", and the output will look like "value of var_a = 5" 
 
 oh and i also got dynamic variable allocation working which was pretty cool to make. you just type an input and the interpreter decides on its own what kind of input it is and stores it in that variable. pretty cool right?
 
