@@ -14,7 +14,7 @@ Since this project is built to be beginner-friendly, we want to keep the code cl
 
 We have a list of features we want to add to make AlgoLang a "real" language:
 
-- [x] **String Concatenation**: Enable space-separated output logic (e.g., `OUTPUT "The result is " result`) to allow mixing strings and variables on one line. The example will output "The result is {value in variable named result}"
+- [ ] **String Concatenation**: Enable space-separated output logic (e.g., `OUTPUT "The result is " result`) to allow mixing strings and variables on one line. The example will output "The result is {value in variable named result}"
 - [x] **Boolean Logic**: Support `AND` / `OR` in `IF` and `WHILE` statements for more complex conditions.
 - [x] **Randomization**: Add a `RANDOM` keyword to generate numbers (e.g., `a_variable = RANDOM(1, 100)` will assign a random int between 1 and 100 to "a_variable".)
 - [ ] **SLEEP Command**: A way to pause execution for a specific duration (e.g., `SLEEP 500` for 500 miliseconds).

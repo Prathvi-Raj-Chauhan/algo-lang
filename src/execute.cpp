@@ -167,7 +167,7 @@ void executeLine(string line, int& i, const vector<string>& Buffer, map<string, 
                     result += toParse[i];
                 }
             }
-            cout << ">>" << result << endl;
+            cout << ">> " << result << endl;
 
         }
         //if raw number
