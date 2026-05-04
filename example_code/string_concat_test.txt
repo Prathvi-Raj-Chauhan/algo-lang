@@ -1,0 +1,81 @@
+START
+
+DECLARE a, b, c, fact_num, loops, num
+
+a = 10
+b = -5
+c = 3.14
+loops = 0
+
+OUTPUT "---- BASIC VARIABLE OUTPUT ----"
+OUTPUT "Value of a = $a"
+OUTPUT "Value of b = $b"
+OUTPUT "Value of c = $c"
+
+OUTPUT "---- MULTIPLE VARIABLES IN ONE LINE ----"
+OUTPUT "a = $a, b = $b, c = $c"
+
+OUTPUT "---- VARIABLES WITH TEXT ----"
+OUTPUT "Sum might be something like $a + $b"
+OUTPUT "Compare: $a > $b"
+
+OUTPUT "---- EDGE CASE: VARIABLE NEXT TO SYMBOLS ----"
+OUTPUT "$a,$b,$c"
+OUTPUT "$a.$b.$c"
+OUTPUT "$a<$b>$c"
+
+OUTPUT "---- EDGE CASE: INVALID VARIABLE ----"
+OUTPUT "This should throw error: $notDeclaredVar"
+
+OUTPUT "---- EDGE CASE: ONLY $ ----"
+OUTPUT "This should print dollar: $"
+
+OUTPUT "---- RANDOM TEST ----"
+fact_num = RANDOM(-10,10)
+OUTPUT "Random value = $fact_num"
+
+OUTPUT "---- LOOP TEST ----"
+num = 3
+WHILE loops < num
+    OUTPUT "Loop iteration = $loops"
+    loops = loops + 1
+ENDWHILE
+
+OUTPUT "---- CONDITIONAL TEST ----"
+a = 5
+b = 10
+
+IF a < b
+    OUTPUT "$a is less than $b"
+ENDIF
+ELIF a > b
+    OUTPUT "$a is greater than $b"
+ENDELIF
+ELSE
+    OUTPUT "$a equals $b"
+ENDELSE
+
+OUTPUT "---- STRING EDGE CASES ----"
+OUTPUT "No variables here"
+OUTPUT "$a$a$a"
+OUTPUT "Mixed $a text $b text $c"
+
+OUTPUT "---- LARGE NUMBER TEST ----"
+a = 100000000
+OUTPUT "Large number test: $a"
+
+OUTPUT "---- NEGATIVE NUMBER TEST ----"
+b = -999
+OUTPUT "Negative test: $b"
+
+OUTPUT "---- FLOAT TEST ----"
+c = 2.718
+OUTPUT "Float test: $c"
+
+OUTPUT "---- STRESS TEST ----"
+OUTPUT "$a $b $c $a $b $c $a $b $c"
+
+OUTPUT "---- FINAL ----"
+OUTPUT "All tests executed."
+
+END

@@ -1,0 +1,30 @@
+START
+DECLARE num, loops, fact_num
+loops = 0
+
+OUTPUT "Welcome to the Number analyzer Enter a number and we will compare it with 3 different numbers."
+OUTPUT "How many numbers you would like to analyze ?"
+OUTPUT "Please enter a number : "
+INPUT num
+
+WHILE loops < 3
+    fact_num = RANDOM(-100,100)
+
+    OUTPUT "Generated fact number = $fact_num"
+    OUTPUT "Your number is = $num"
+
+    IF num < fact_num
+        OUTPUT "Your number is less than fact_num, $num < $fact_num"
+    ENDIF
+    ELIF num > fact_num
+        OUTPUT "Your number is greater than fact_num, $num > $fact_num"
+    ENDELIF
+    ELSE
+        OUTPUT "Your number and generated number are equal, $num == $fact_num"
+    ENDELSE
+
+    loops = loops + 1
+ENDWHILE
+
+OUTPUT "Analysis finished. Goodbye!"
+END

@@ -130,11 +130,45 @@ void executeLine(string line, int& i, const vector<string>& Buffer, map<string, 
         if (restOfLine.empty()) return;
 
         //if string literal
-        if (restOfLine[0] == '"') {
+         if (restOfLine[0] == '"') {
             size_t lastQuote = restOfLine.find_last_of('"');
+            string toParse;
             if (lastQuote != string::npos && lastQuote > 0) {
-                cout << ">> " << restOfLine.substr(1, lastQuote - 1) << endl;
+                toParse = restOfLine.substr(1, lastQuote - 1);
             } else cout << "Error: Missing closing quote in OUTPUT!" << endl;
+            
+            string result;
+            for(int i = 0; i < (int)toParse.length(); i++){
+                if(toParse[i] == '$'){
+                    int tempPos = i+1;
+                    while(tempPos < (int)toParse.length() && (isalnum(toParse[tempPos]) || toParse[tempPos] == '_')){
+                        tempPos++;
+                    }
+                    if (tempPos == i + 1) { // no valid variable name
+                        result += '$';
+                        continue;
+                    }
+                    int tempSize = tempPos-(i+1);
+                    string varname = toParse.substr(i+1, tempSize);
+                    if (!checkVarExists(varname, variables)) return ;
+                    varValue v = (*variables)[varname];
+                    if(v.type == TYPE_INT){
+                        result += to_string(v.i_val);
+                    }
+                    else if(v.type == TYPE_FLOAT){
+                        result += to_string(v.f_val);
+                    }
+                    else{
+                        result += v.s_val;
+                    }
+                    i = tempPos-1;
+                }
+                else{
+                    result += toParse[i];
+                }
+            }
+            cout << ">>" << result << endl;
+
         }
         //if raw number
         else if (isdigit(restOfLine[0]) || (restOfLine[0] == '-' && restOfLine.length() > 1 && isdigit(restOfLine[1]))) {
